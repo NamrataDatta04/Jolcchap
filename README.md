@@ -1,3 +1,7 @@
+# **Jolcchap**, 
+## A web application for image editing without the hassle of traditional software downloads and account setups
+
+
 Introducing Jolcchap, a cutting-edge web application revolutionizing image editing without the cumbersome barriers of traditional software downloads and account setups. Crafted with a seamless blend of HTML and CSS technologies, Jolcchap empowers users with unparalleled accessibility and efficiency in enhancing their visual content.
 
 Harnessing the power of web-based architecture, Jolcchap offers a dynamic platform for image manipulation, boasting a rich array of features rivaling desktop counterparts. From intricate photo retouching to transformative artistic filters, our application delivers a comprehensive toolkit at users' fingertips, enabling effortless creation and refinement of stunning visuals.
