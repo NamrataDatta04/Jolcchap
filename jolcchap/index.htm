@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JOLCHHAP Image Editor</title>
+    <link type="text/css" href="css/tui-color-picker.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/tui-image-editor.css">
+    <!--fontawesome css-->
+    <link rel="stylesheet" href="css/all.min.css">
+    <style>
+        /* google font css file */
+        @import url(http://fonts.googleapis.com/css?family=Noto+Sans);
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        /* dark white theme toggle button */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        #toggle-div {
+            position: absolute;
+            top: 1em;
+            left: 0.35em;
+            z-index: 100;
+        }
+
+        .checkbox {
+            opacity: 0;
+            position: absolute;
+        }
+
+        .label {
+            background-color: #fff;
+            border-radius: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 5px;
+            position: relative;
+            height: 26px;
+            width: 50px;
+            transform: scale(1);
+        }
+
+        .label .ball {
+            background-color: #111;
+            border-radius: 50%;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            height: 22px;
+            width: 22px;
+            transform: translateX(0px);
+            transition: transform 0.2s linear;
+        }
+
+        .checkbox:checked+.label .ball {
+            transform: translateX(24px);
+        }
+
+
+        .fa-moon {
+            color: #f1c40f;
+        }
+
+        .fa-sun {
+            color: #f39c12;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="toggle-div">
+        <input type="checkbox" class="checkbox" id="toggle-theme" />
+        <label class="label" for="toggle-theme">
+            <i class="fas fa-moon"></i>
+            <i class="fas fa-sun"></i>
+            <div class="ball"></div>
+        </label>
+    </div>
+
+    <div id="image-editor"></div>
+
+    <script type="text/javascript" src="js/fabric.js"></script>
+    <script type="text/javascript" src="js/tui-code-snippet.min.js"></script>
+    <script type="text/javascript" src="js/tui-color-picker.js"></script>
+    <script type="text/javascript" src="js/FileSaver.min.js"></script>
+    <script type="text/javascript" src="js/tui-image-editor.js"></script>
+    <script type="text/javascript" src="js/theme/white-theme.js"></script>
+    <script type="text/javascript" src="js/theme/black-theme.js"></script>
+    <script>
+        var isWhite = true;
+
+        var imageEditor = new tui.ImageEditor("#image-editor", getSettings(isWhite));
+
+        document.querySelector("#toggle-theme").addEventListener("change", function () {
+            isWhite = !isWhite;
+            imageEditor.ui.destroy();
+            imageEditor = new tui.ImageEditor("#image-editor", getSettings(isWhite));
+        });
+
+        window.onresize = function () {
+            imageEditor.ui.resizeEditor();
+        }
+
+        function getSettings(isWhite) {
+            return {
+                includeUI: {
+                    loadImage: {
+                        path: './img/cat.jpg',
+                        name: 'SampleImage',
+                    },
+                    theme: isWhite ? whiteTheme : blackTheme,
+                    initMenu: 'filter',
+                    menuBarPosition: 'left',
+                },
+            };
+        }
+
+        window.onbeforeunload = function () {
+            return 'Are you sure you want to leave?';
+        };
+    </script>
+</body>
+
+</html>
